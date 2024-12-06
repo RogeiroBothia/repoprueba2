@@ -22,8 +22,6 @@ public class SeguimientoGraduadosApplication {
 				@Override
 				public void addCorsMappings(CorsRegistry registry) {
 					registry.addMapping("/**")
-							.allowedOrigins("*")
-							.allowCredentials(true)
 							.allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
 				}
 			};
