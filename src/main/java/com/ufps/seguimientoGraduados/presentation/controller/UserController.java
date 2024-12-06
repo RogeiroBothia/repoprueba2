@@ -2,6 +2,7 @@ package com.ufps.seguimientoGraduados.presentation.controller;
 
 import com.ufps.seguimientoGraduados.persistence.entity.UserApp;
 import com.ufps.seguimientoGraduados.presentation.dto.LoginDTO;
+import com.ufps.seguimientoGraduados.presentation.dto.UserAppDTO;
 import com.ufps.seguimientoGraduados.presentation.dto.UserBasicDTO;
 import com.ufps.seguimientoGraduados.service.interfaces.UserAppService;
 import jakarta.validation.Valid;
@@ -32,8 +33,8 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String profile(){
-        return "logica con seguridad";
+    public ResponseEntity<UserAppDTO> viewPerfil(@PathVariable Long userId){
+        return ResponseEntity.status(HttpStatus.OK).body(userAppService.viewProfile(userId));
     }
 
 
