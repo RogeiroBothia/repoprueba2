@@ -32,7 +32,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(String.valueOf(userId));
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/{userId}/profile")
     public ResponseEntity<UserAppDTO> viewPerfil(@PathVariable Long userId){
         return ResponseEntity.status(HttpStatus.OK).body(userAppService.viewProfile(userId));
     }
