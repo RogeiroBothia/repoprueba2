@@ -22,4 +22,6 @@ public interface UserAppService {
     Long loginUser(LoginDTO userDto);
 
     UserAppDTO viewProfile(Long userId);
+
+    void updateUser(Long userId, UserAppDTO userUpdate);
 }

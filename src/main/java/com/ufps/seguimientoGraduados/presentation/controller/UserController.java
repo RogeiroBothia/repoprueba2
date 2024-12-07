@@ -40,4 +40,14 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
+
+    @PutMapping("/{userId}/update") //funciona
+    public ResponseEntity<String> updateUser(@PathVariable Long userId, @RequestBody UserAppDTO userClient){
+        try {
+            userAppService.updateUser(userId, userClient);
+            return ResponseEntity.status(HttpStatus.OK).body("1");
+        }catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
 }

@@ -123,4 +123,19 @@ public class UserAppServiceImpl implements UserAppService {
         userAppDTO.setPhotoUrl(optionalUser.get().getPhotoUrl());
         return userAppDTO;
     }
+
+    @Override
+    public void updateUser(Long userId, UserAppDTO userUpdate) {
+        Optional<UserApp> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isPresent()) {
+            UserApp userBD = optionalUser.get(); //desempaquetar el optional
+            userBD.setNombre(userUpdate.getNombre());
+            userBD.setEmpresario(userUpdate.isEmpresario());
+            userBD.setPhotoUrl(userUpdate.getPhotoUrl());
+            userBD.setResidencia(userUpdate.getResidencia());
+            userRepository.save(userBD); // Guarda los cambios en la base de datos
+        } else {
+            throw new RuntimeException("Usuario no encontrado");
+        }
+    }
 }
