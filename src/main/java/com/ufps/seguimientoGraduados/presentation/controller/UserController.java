@@ -31,18 +31,4 @@ public class UserController {
         Long userId = userAppService.loginUser(userLogin);
         return ResponseEntity.status(HttpStatus.OK).body(String.valueOf(userId));
     }
-
-    @GetMapping("/{userId}/profile")
-    public ResponseEntity<UserAppDTO> viewPerfil(@PathVariable Long userId){
-        return ResponseEntity.status(HttpStatus.OK).body(userAppService.viewProfile(userId));
-    }
-
-
-/*
-        @GetMapping("/{correo}")
-        public Usuario obtenerUsuario(@PathVariable String correo) {
-            return usuarioService.obtenerUsuario(correo);
-        }
-    }*/
-
 }

@@ -21,5 +21,5 @@ public interface UserAppService {
 
     Long loginUser(LoginDTO userDto);
 
-    UserAppDTO viewProfile(Long userId);
+
 }
