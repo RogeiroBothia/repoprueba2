@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<UserApp,Long> {
     Optional<UserApp> findUserByUsername(String username);
     List<UserApp> findByIsNoUserTrue();
+    List<UserApp> findByIsUserTrue();
 }

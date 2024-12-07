@@ -22,7 +22,6 @@ public class UserAppServiceImpl implements UserAppService {
     //********************************* Metodos para el admin **************************************
     @Override
     public List<UserAppDTO> userNoAprobados() {
-        userRepository.findByIsNoUserTrue();
         List<UserApp> usersUnabled = userRepository.findByIsNoUserTrue();
         return usersUnabled.stream()
                 .map(user -> new UserAppDTO(
@@ -30,6 +29,22 @@ public class UserAppServiceImpl implements UserAppService {
                         user.getNombre(),
                         user.getCedula(),
                         user.getCodigoPrograma()
+                )).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserAppDTO> getAllActiveUsers() {
+        List<UserApp> usersActive = userRepository.findByIsUserTrue();
+        return usersActive.stream()
+                .map(user -> new UserAppDTO(
+                        user.getUserId(),
+                        user.getNombre(),
+                        user.getCedula(),
+                        user.getCodigoPrograma(),
+                        user.getUsername(),
+                        user.isEmpresario(),
+                        user.getResidencia(),
+                        user.getPhotoUrl()
                 )).collect(Collectors.toList());
     }
 

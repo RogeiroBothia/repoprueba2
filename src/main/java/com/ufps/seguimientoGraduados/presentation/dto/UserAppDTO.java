@@ -32,4 +32,15 @@ public class UserAppDTO {
         this.setCedula(cedula);
         this.setCodigoPrograma(codigoPrograma);
     }
+
+    public UserAppDTO(Long userId, String nombre, String cedula, String codigoPrograma,String photoUrl, boolean isEmpresario, String residencia,String username){
+        this.setUserId(userId);
+        this.setNombre(nombre);
+        this.setCedula(cedula);
+        this.setCodigoPrograma(codigoPrograma);
+        this.setUsername(username);
+        this.setEmpresario(isEmpresario);
+        this.setResidencia(residencia);
+        this.setPhotoUrl(photoUrl);
+    }
 }
