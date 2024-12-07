@@ -111,17 +111,16 @@ public class UserAppServiceImpl implements UserAppService {
     public UserAppDTO viewProfile(Long userId){
         Optional<UserApp> optionalUser = userRepository.findById(userId);
         if(!optionalUser.isPresent()) throw new RuntimeException("No existe");
-        UserAppDTO userAppDTO = null;
+        UserAppDTO userAppDTO = new UserAppDTO();
 
         userAppDTO.setUserId(optionalUser.get().getUserId());
         userAppDTO.setNombre(optionalUser.get().getNombre());
         userAppDTO.setCedula(optionalUser.get().getCedula());
         userAppDTO.setCodigoPrograma(optionalUser.get().getCodigoPrograma());
         userAppDTO.setUsername(optionalUser.get().getUsername());
-        userAppDTO.setPhotoUrl(optionalUser.get().getPhotoUrl());
-        userAppDTO.setResidencia(optionalUser.get().getResidencia());
         userAppDTO.setEmpresario(optionalUser.get().isEmpresario());
-
+        userAppDTO.setResidencia(optionalUser.get().getResidencia());
+        userAppDTO.setPhotoUrl(optionalUser.get().getPhotoUrl());
         return userAppDTO;
     }
 }

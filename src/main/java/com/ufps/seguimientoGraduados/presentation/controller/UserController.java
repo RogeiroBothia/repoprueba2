@@ -34,6 +34,10 @@ public class UserController {
 
     @GetMapping("/{userId}/profile")
     public ResponseEntity<UserAppDTO> viewPerfil(@PathVariable Long userId){
+        try{
         return ResponseEntity.status(HttpStatus.OK).body(userAppService.viewProfile(userId));
+        }catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
 }
