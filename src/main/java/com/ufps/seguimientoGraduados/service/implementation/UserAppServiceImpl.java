@@ -138,4 +138,19 @@ public class UserAppServiceImpl implements UserAppService {
             throw new RuntimeException("Usuario no encontrado");
         }
     }
+
+    @Override
+    public int userEstate(Long userId){
+        Optional<UserApp> optionalUser = userRepository.findById(userId);
+        if (!optionalUser.isPresent()) {
+            throw new RuntimeException("Usuario no encontrado");
+        }
+        UserApp userDB = optionalUser.get();
+        int estate =0;
+        if(userDB.isNoUser()) estate= -1;
+        if(userDB.isUser()) estate= 200;
+        if(userDB.isAdmin()) estate= 1;
+
+        return estate;
+    }
 }

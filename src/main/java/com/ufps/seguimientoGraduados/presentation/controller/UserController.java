@@ -50,4 +50,13 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
+    @GetMapping("/estate")
+    public ResponseEntity<Integer> isActive(@PathVariable Long userId){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(userAppService.userEstate(userId));
+        }catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(999);
+        }
+    }
 }
