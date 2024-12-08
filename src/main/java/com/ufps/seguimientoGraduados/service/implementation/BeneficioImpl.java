@@ -2,60 +2,40 @@ package com.ufps.seguimientoGraduados.service.implementation;
 
 import com.ufps.seguimientoGraduados.persistence.entity.Beneficio;
 import com.ufps.seguimientoGraduados.persistence.repository.BeneficioRepository;
-import com.ufps.seguimientoGraduados.presentation.dto.BeneficioCreateDTO;
 import com.ufps.seguimientoGraduados.service.interfaces.BeneficioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class BeneficioImpl implements BeneficioService {
 
-    @Autowired
-    BeneficioRepository beneficioDao;
+    @Autowired private BeneficioRepository beneficioRepository;
 
     @Override
-    public Beneficio saveBeneficio(Beneficio clientBeneficio){
-        return beneficioDao.save(clientBeneficio);
+    public List<Beneficio> getAllBeneficios() {
+        return beneficioRepository.findAll();
     }
 
-    @Override
-    public Beneficio mappearDTO(BeneficioCreateDTO clientBeneficioDTO){
-        Beneficio newBeneficio = new Beneficio();
-        newBeneficio.setTitulo(clientBeneficioDTO.getTitulo());
-        newBeneficio.setDescripcion(clientBeneficioDTO.getDescripcion());
-        newBeneficio.setImagen(clientBeneficioDTO.getImagen());
-        newBeneficio.setMasInfo(clientBeneficioDTO.getMasInfo());
-        return newBeneficio;
+    @Override public Optional<Beneficio> getBeneficioById(Long id) {
+        return beneficioRepository.findById(id);
     }
 
-    @Override
-    public BeneficioCreateDTO mappearEntity(Beneficio clientBeneficio){
-        BeneficioCreateDTO newBeneficio = new BeneficioCreateDTO();
-        newBeneficio.setTitulo(clientBeneficio.getTitulo());
-        newBeneficio.setDescripcion(clientBeneficio.getDescripcion());
-        newBeneficio.setImagen(clientBeneficio.getImagen());
-        newBeneficio.setMasInfo(clientBeneficio.getMasInfo());
-        return newBeneficio;
+    @Override public void createBeneficio(Beneficio beneficio) {
+        beneficioRepository.save(beneficio);
+    }
+
+    @Override public void updateBeneficio(Long id, Beneficio beneficio) {
+        Beneficio beneficioDB = beneficioRepository.findById(id) .orElseThrow(() -> new RuntimeException("Invalid beneficio id"));
+        beneficioDB.setTitulo(beneficio.getTitulo());
+        beneficioDB.setDescripcion(beneficio.getDescripcion());
+        beneficioDB.setImagen(beneficio.getImagen());
+        beneficioDB.setMasInfo(beneficio.getMasInfo());
+        beneficioRepository.save(beneficioDB);
     }
 
     @Override
-    public BeneficioCreateDTO findBeneficioId(Long beneficioId){
-        Optional<Beneficio> beneficio = beneficioDao.findById(beneficioId);
-        BeneficioCreateDTO beneficioDTO = mappearEntity(beneficio.orElse(null));
-        return beneficioDTO;
-    }
-
-    @Override
-    public BeneficioCreateDTO updateBeneficio(Long beneficioId, BeneficioCreateDTO clientBeneficio){
-        Beneficio updateBeneficio = mappearDTO(clientBeneficio);
-        updateBeneficio.setBeneficioId(beneficioId);
-        saveBeneficio(updateBeneficio);
-        return clientBeneficio;
-    }
-    @Override
-    public void deleteBeneficioById(Long id){
-        beneficioDao.deleteById(id);
-    }
+    public void deleteBeneficioById(Long id) { beneficioRepository.deleteById(id); }
 }

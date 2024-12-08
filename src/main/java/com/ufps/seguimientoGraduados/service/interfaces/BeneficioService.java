@@ -1,18 +1,14 @@
 package com.ufps.seguimientoGraduados.service.interfaces;
 
 import com.ufps.seguimientoGraduados.persistence.entity.Beneficio;
-import com.ufps.seguimientoGraduados.presentation.dto.BeneficioCreateDTO;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface BeneficioService{
-    Beneficio saveBeneficio(Beneficio clientBeneficio);
-
-    Beneficio mappearDTO(BeneficioCreateDTO clientBeneficioDTO);
-
-    BeneficioCreateDTO mappearEntity(Beneficio clientBeneficio);
-
-    BeneficioCreateDTO findBeneficioId(Long beneficioId);
-
-    BeneficioCreateDTO updateBeneficio(Long beneficioId, BeneficioCreateDTO clientBeneficio);
-
+    List<Beneficio> getAllBeneficios();
+    Optional<Beneficio> getBeneficioById(Long id);
+    void createBeneficio(Beneficio beneficio);
+    void updateBeneficio(Long id, Beneficio beneficio);
     void deleteBeneficioById(Long id);
 }
