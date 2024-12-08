@@ -51,7 +51,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/estate")
+    @GetMapping("/{userId}/estate")
     public ResponseEntity<Integer> isActive(@PathVariable Long userId){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(userAppService.userEstate(userId));
