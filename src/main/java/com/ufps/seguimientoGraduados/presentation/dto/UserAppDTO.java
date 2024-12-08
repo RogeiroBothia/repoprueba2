@@ -37,9 +37,9 @@ public class UserAppDTO {
         this.setNombre(nombre);
         this.setCedula(cedula);
         this.setCodigoPrograma(codigoPrograma);
-        this.setUsername(username);
+        this.setPhotoUrl(photoUrl);
         this.setEmpresario(isEmpresario);
         this.setResidencia(residencia);
-        this.setPhotoUrl(photoUrl);
+        this.setUsername(username);
     }
 }

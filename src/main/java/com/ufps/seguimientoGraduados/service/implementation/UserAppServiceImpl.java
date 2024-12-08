@@ -41,10 +41,10 @@ public class UserAppServiceImpl implements UserAppService {
                         user.getNombre(),
                         user.getCedula(),
                         user.getCodigoPrograma(),
-                        user.getUsername(),
+                        user.getPhotoUrl(),
                         user.isEmpresario(),
                         user.getResidencia(),
-                        user.getPhotoUrl()
+                        user.getUsername()
                 )).collect(Collectors.toList());
     }
 
