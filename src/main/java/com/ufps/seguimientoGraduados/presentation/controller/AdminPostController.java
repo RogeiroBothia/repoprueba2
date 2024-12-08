@@ -19,7 +19,7 @@ public class AdminPostController {
 
     @GetMapping()
     public List<Post> postNoActivated(){
-        return postService.ffindByActivePostFalse();
+        return postService.noActivePost();
     }
 
     @PutMapping("/{postId}")
