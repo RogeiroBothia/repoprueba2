@@ -1,5 +1,6 @@
 package com.ufps.seguimientoGraduados.presentation.controller;
 
+import com.ufps.seguimientoGraduados.persistence.entity.Post;
 import com.ufps.seguimientoGraduados.presentation.dto.UserAppDTO;
 import com.ufps.seguimientoGraduados.presentation.dto.UserBasicDTO;
 import com.ufps.seguimientoGraduados.service.interfaces.UserAppService;
