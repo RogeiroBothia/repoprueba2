@@ -1,18 +1,21 @@
 package com.ufps.seguimientoGraduados.service.implementation;
 
 import com.ufps.seguimientoGraduados.persistence.entity.Comment;
+import com.ufps.seguimientoGraduados.persistence.entity.Post;
 import com.ufps.seguimientoGraduados.persistence.repository.CommentRepository;
 import com.ufps.seguimientoGraduados.persistence.repository.PostRepository;
 import com.ufps.seguimientoGraduados.service.interfaces.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@Service
 public class CommentServiceImpl implements CommentService {
     @Autowired private CommentRepository commentRepository;
 
-    @Autowired private PostRepository postRepository; // Necesitamos esto para verificar la existencia del post
+    @Autowired private PostRepository postRepository;
 
     @Override public
     Optional<Comment> getCommentById(Long id) {
@@ -21,11 +24,10 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void createComment(Long postId, Comment comment, Long userId) {
-        if (!postRepository.existsById(postId)) {
-            throw new RuntimeException("Invalid post id");
-        }
+        Post post = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Invalid post id"));
         comment.setCreatedAt(LocalDateTime.now());
-        comment.setUserId(userId); comment.setPostId(postId);
+        comment.setUserId(userId);
+        comment.setPost(post);
         commentRepository.save(comment);
     }
 

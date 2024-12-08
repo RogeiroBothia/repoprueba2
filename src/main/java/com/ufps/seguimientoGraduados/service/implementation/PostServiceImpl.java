@@ -57,4 +57,9 @@ public class PostServiceImpl implements PostService {
         postDB.setActivePost(true);
         postRepository.save(postDB);
     }
+
+    @Override
+    public List<Post> noActivePost(){
+        return postRepository.findByActivePostFalse();
+    }
 }

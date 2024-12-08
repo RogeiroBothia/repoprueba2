@@ -14,4 +14,6 @@ public interface PostService {
     void deletePostById(Long id);
 
     void activePost(Long postId);
+
+    List<Post> noActivePost();
 }
